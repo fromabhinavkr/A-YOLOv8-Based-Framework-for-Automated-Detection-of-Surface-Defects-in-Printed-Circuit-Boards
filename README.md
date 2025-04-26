@@ -104,4 +104,4 @@ It includes:
 ## 👨‍💻 Author
 - **Name**: ABHINAV K R
 - **Contact**: abhinavnowkr@gmailcom
-- **LinkedIn**:[abhinavkravi](https://www.linkedin.com/in/abhinavkravi/)
+- **LinkedIn**: [abhinavkravi](https://www.linkedin.com/in/abhinavkravi/)
