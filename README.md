@@ -84,7 +84,7 @@ It includes:
 
 ## 📄 License
 
-TBA
+- TBA
 ---
 
 ## 🙏 Acknowledgements
