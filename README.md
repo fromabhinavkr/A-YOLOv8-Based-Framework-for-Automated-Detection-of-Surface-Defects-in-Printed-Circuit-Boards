@@ -3,13 +3,6 @@ An end-to-end YOLOv8-based system for detecting six types of PCB surface defects
 
 ---
 
-# PCB Defect Detection using YOLOv8
-
-Detect and classify surface defects on Printed Circuit Boards (PCBs) using a deep learning pipeline built with YOLOv8.  
-The project covers dataset preparation, model training, validation, and real-time inference.
-
----
-
 ## 📋 Table of Contents
 
 - [Overview](#overview)
