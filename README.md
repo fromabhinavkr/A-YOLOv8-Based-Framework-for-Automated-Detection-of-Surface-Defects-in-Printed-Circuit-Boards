@@ -100,3 +100,8 @@ It includes:
 - [Kaggle PCB Dataset](https://www.kaggle.com/datasets)
 
 ---
+
+## 👨‍💻 Author
+- **Name**: ABHINAV K R
+- **Contact**: abhinavnowkr@gmailcom
+- **LinkedIn**:[abhinavkravi](https://www.linkedin.com/in/abhinavkravi/)
