@@ -14,6 +14,7 @@ from sklearn.model_selection import train_test_split
 from ultralytics import YOLO
 from PIL import Image as PILImage
 
+
 #  working directory
 os.chdir(os.path.dirname(__file__))
 
@@ -45,7 +46,7 @@ for ext in ('*.jpg', '*.jpeg', '*.png', '*.JPG', '*.JPEG', '*.PNG'):
         filename = os.path.splitext(os.path.basename(img_path))[0].strip().lower()
         image_path_map[filename] = img_path
 
-print("✅ Sample of collected image keys:", list(image_path_map.keys())[:5])
+print("Sample of collected image keys:", list(image_path_map.keys())[:5])
 
 #  Gather all XML annotations
 xml_files = glob.glob(f'{annotation_root}/**/*.xml', recursive=True)
@@ -99,15 +100,15 @@ for xml_file in xml_files:
     converted_count += 1
 
 img_count = len(glob.glob(os.path.join(yolo_image_dir, '*')))
-print(f"✅ Total images copied to YOLO train folder: {img_count}")
-print(f"✅ Total annotations converted: {converted_count}")
+print(f"Total images copied to YOLO train folder: {img_count}")
+print(f"Total annotations converted: {converted_count}")
 if missing_images:
-    print("⚠️ Sample of missing image matches:")
+    print(" Sample of missing image matches:")
     for miss in missing_images[:5]:
         print(f"XML filename: {miss[0]} | Processed key: {miss[1]}")
-    print("⚠️ Total missing image matches:", len(missing_images))
+    print(" Total missing image matches:", len(missing_images))
 
-# 🔀 Split into Train and Validation Sets
+#  Split into Train and Validation Sets
 image_filenames = [os.path.basename(p) for p in glob.glob(os.path.join(yolo_image_dir, '*'))]
 print("Sample images:", image_filenames[:5])
 
@@ -147,12 +148,29 @@ save_dir = Path("runs/detect/train5")
 weights_path = save_dir / "weights/best.pt"
 
 if weights_path.exists():
-    print(f"✅ Model already trained. Loading from {weights_path}")
+    print(f" Model already trained. Loading from {weights_path}")
     model = YOLO(weights_path)
 else:
-    print("🚀 Training model from scratch...")
+    print(" Training model from scratch...")
     model = YOLO('yolov8n.pt')  # Use YOLOv8n for speed
     model.train(data=os.path.abspath('pcb.yaml'), epochs=20, imgsz=640)
+
+#conf
+
+
+# Load the trained model
+model = YOLO('runs/detect/train5/weights/best.pt')  # Use correct path
+
+# Run validation to generate metrics and confusion matrix
+metrics = model.val(data='pcb.yaml', conf=0.25, iou=0.5)
+
+# Display the confusion matrix
+conf_matrix_path = os.path.join(metrics.save_dir, 'confusion_matrix.png')
+if os.path.exists(conf_matrix_path):
+    img = PILImage.open(conf_matrix_path)
+    img.show()
+else:
+    print(" Confusion matrix not found.")
 
 # Step 6: Predict on a Local Test Image
 test_img_path = 'test2.jpg'  
