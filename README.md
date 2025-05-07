@@ -1,4 +1,4 @@
-# A-YOLOv8-Based-Framework-for-Detection-of-Surface-Defects-in-Printed-Circuit-Boards
+#  DETECTION OF SURFACE DEFECTS IN PRINTED CIRCUIT BOARDS USING YOLOv8
 An end-to-end YOLOv8-based system for detecting six types of PCB surface defects. It includes dataset conversion, automated train/val split, model training, and real-time inference, offering a fast and accurate solution for PCB quality inspection.
 
 ---
